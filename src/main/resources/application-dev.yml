@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ead-payment-service
+  config:
+    import: 'configserver:http://appconfigserver:8888'
+  cloud:
+    config:
+      discovery:
+        service-id: ead-config-server
+      username: configserver
+      password: ead123cs
+  devtools:
+    remote:
+      secret: 123
+    restart:
+      trigger-file: trigger.txt

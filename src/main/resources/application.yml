@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ead-payment-service
+  config:
+    import: 'configserver:http://appconfigserver:8888'
+  profiles:
+    active: dev
+  cloud:
+    config:
+      discovery:
+        service-id: ead-config-server
+      username: configserver
+      password: ead123cs

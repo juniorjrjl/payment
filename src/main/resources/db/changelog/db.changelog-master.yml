@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: /db/changelog/db.changelog-202212011028.sql
+  - include:
+      file: /db/changelog/db.changelog-202212011756.sql
+  - include:
+      file: /db/changelog/db.changelog-202212011809.sql
+  - include:
+      file: /db/changelog/db.changelog-202212011819.sql
