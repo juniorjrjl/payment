@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,6 +25,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(final UUID id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<UserModel> findById(final UUID id) {
+        return userRepository.findById(id);
     }
 
 }

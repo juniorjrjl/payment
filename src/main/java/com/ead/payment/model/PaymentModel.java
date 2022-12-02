@@ -20,6 +20,8 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+import static com.ead.payment.enumeration.PaymentControl.EFFECTED;
+import static com.ead.payment.enumeration.PaymentControl.REQUESTED;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.AUTO;
@@ -54,6 +56,14 @@ public class PaymentModel implements Serializable {
     private String message;
     @Column(nullable = false)
     private boolean recurrence;
+
+    public boolean isRequested(){
+        return paymentControl.equals(REQUESTED);
+    }
+
+    public boolean isEffected(){
+        return paymentControl.equals(EFFECTED) && expirationDate.isAfter(OffsetDateTime.now());
+    }
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ToString.Exclude
