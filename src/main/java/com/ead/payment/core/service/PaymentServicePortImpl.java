@@ -67,7 +67,7 @@ public class PaymentServicePortImpl implements PaymentServicePort {
     @Override
     public PaymentDomain requestPayment(final PaymentRequestPaymentDomain requestPayment, final UUID userId) {
         userQueryServicePort.findById(userId);
-        try {git
+        try {
             var domain = paymentQueryServicePort.findLastPaymentByUser(userId);
             if (domain.isRequested()){
                 throw new PaymentAlreadyRequestedException("Payment already requested.");
