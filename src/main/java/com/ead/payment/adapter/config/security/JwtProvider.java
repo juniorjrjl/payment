@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.config.security;
+package com.ead.payment.adapter.config.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

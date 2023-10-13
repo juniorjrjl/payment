@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.config;
+package com.ead.payment.adapter.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

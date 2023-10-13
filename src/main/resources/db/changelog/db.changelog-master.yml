@@ -7,3 +7,5 @@ databaseChangeLog:
       file: /db/changelog/db.changelog-202212011809.sql
   - include:
       file: /db/changelog/db.changelog-202212011819.sql
+  - include:
+      file: /db/changelog/db.changelog-202302031646.sql

@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface CreditCardRepository extends JpaRepository<CreditCardEntity, UUID>, JpaSpecificationExecutor<CreditCardEntity> {
+public interface CreditCardJpaRepository extends JpaRepository<CreditCardEntity, UUID>, JpaSpecificationExecutor<CreditCardEntity> {
 
-    Optional<CreditCardEntity> findByUser(final UserEntity userEntity);
+    Optional<CreditCardEntity> findByUserId(final UUID userId);
 
 }

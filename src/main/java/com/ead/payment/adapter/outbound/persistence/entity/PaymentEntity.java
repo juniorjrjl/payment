@@ -1,6 +1,5 @@
-package com.ead.payment.zzzz.model;
+package com.ead.payment.adapter.outbound.persistence.entity;
 
-import com.ead.payment.zzzz.enumeration.PaymentControl;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
@@ -20,8 +19,8 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-import static com.ead.payment.zzzz.enumeration.PaymentControl.EFFECTED;
-import static com.ead.payment.zzzz.enumeration.PaymentControl.REQUESTED;
+import static com.ead.payment.adapter.outbound.persistence.entity.PaymentControl.EFFECTED;
+import static com.ead.payment.adapter.outbound.persistence.entity.PaymentControl.REQUESTED;
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.AUTO;
@@ -32,7 +31,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @Getter
 @Setter
 @ToString
-public class PaymentModel implements Serializable {
+public class PaymentEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -68,13 +67,13 @@ public class PaymentModel implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ToString.Exclude
     @ManyToOne(optional = false, fetch = LAZY)
-    private UserModel user;
+    private UserEntity user;
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final PaymentModel that = (PaymentModel) o;
+        final PaymentEntity that = (PaymentEntity) o;
         return recurrence == that.recurrence && id.equals(that.id) && control == that.control &&
                 requestDate.equals(that.requestDate) && Objects.equals(completionDate, that.completionDate) &&
                 expirationDate.equals(that.expirationDate) && lastDigitCreditCard.equals(that.lastDigitCreditCard) &&

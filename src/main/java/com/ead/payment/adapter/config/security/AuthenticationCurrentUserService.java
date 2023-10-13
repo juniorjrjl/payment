@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.config.security;
+package com.ead.payment.adapter.config.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

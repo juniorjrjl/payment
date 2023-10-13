@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.enumeration;
+package com.ead.payment.adapter.dto;
 
 public enum ActionType {
 

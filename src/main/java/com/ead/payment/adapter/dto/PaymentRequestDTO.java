@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.dto;
+package com.ead.payment.adapter.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.DecimalMin;

@@ -1,10 +1,10 @@
-package com.ead.payment.zzzz.consumer;
+package com.ead.payment.adapter.inbound.consumer;
 
-import com.ead.payment.zzzz.dto.UserEventDTO;
-import com.ead.payment.zzzz.enumeration.ActionType;
-import com.ead.payment.zzzz.enumeration.PaymentStatus;
-import com.ead.payment.zzzz.mapper.UserMapper;
-import com.ead.payment.zzzz.service.UserService;
+import com.ead.payment.adapter.dto.ActionType;
+import com.ead.payment.adapter.dto.UserEventDTO;
+import com.ead.payment.adapter.mapper.UserMapper;
+import com.ead.payment.adapter.outbound.persistence.entity.PaymentStatus;
+import com.ead.payment.core.port.service.UserServicePort;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -19,7 +19,7 @@ import static org.springframework.amqp.core.ExchangeTypes.FANOUT;
 @Component
 public class UserConsumer {
 
-    private final UserService userService;
+    private final UserServicePort userServicePort;
     private final UserMapper userMapper;
 
     @RabbitListener(bindings = @QueueBinding(
@@ -28,15 +28,14 @@ public class UserConsumer {
     public void listenUserEvent(@Payload final UserEventDTO event){
         switch (ActionType.valueOf(event.actionType())){
             case CREATE -> {
-                var model = userMapper.toModel(event);
-                model.setPaymentStatus(PaymentStatus.NOT_STARTED);
-                userService.save(model);
+                var model = userMapper.toDomain(event);
+                userServicePort.save(model.toBuilder().paymentStatus(PaymentStatus.NOT_STARTED).build());
             }
             case UPDATE -> {
-                var model = userMapper.toModel(event);
-                userService.save(model);
+                var model = userMapper.toDomain(event);
+                userServicePort.update(model);
             }
-            case DELETE -> userService.delete(event.id());
+            case DELETE -> userServicePort.delete(event.id());
         }
     }
 }

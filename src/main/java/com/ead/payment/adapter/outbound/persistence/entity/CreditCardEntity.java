@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.model;
+package com.ead.payment.adapter.outbound.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
@@ -25,7 +25,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @Getter
 @Setter
 @ToString
-public class CreditCardModel implements Serializable {
+public class CreditCardEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -45,13 +45,13 @@ public class CreditCardModel implements Serializable {
     @OneToOne
     @JoinColumn(unique = true, nullable = false)
     @ToString.Exclude
-    private UserModel user;
+    private UserEntity user;
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final CreditCardModel that = (CreditCardModel) o;
+        final CreditCardEntity that = (CreditCardEntity) o;
         return id.equals(that.id) && holderFullName.equals(that.holderFullName) && holderCpf.equals(that.holderCpf) &&
                 creditCardNumber.equals(that.creditCardNumber) && expirationDate.equals(that.expirationDate) &&
                 cvvCode.equals(that.cvvCode);

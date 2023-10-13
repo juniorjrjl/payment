@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.config;
+package com.ead.payment.adapter.config;
 
 import net.kaczmarzyk.spring.data.jpa.web.SpecificationArgumentResolver;
 import org.springframework.context.annotation.Configuration;

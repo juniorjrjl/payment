@@ -1,6 +1,5 @@
-package com.ead.payment.zzzz.model;
+package com.ead.payment.adapter.outbound.persistence.entity;
 
-import com.ead.payment.zzzz.enumeration.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
@@ -30,7 +29,7 @@ import static org.hibernate.annotations.FetchMode.SUBSELECT;
 @Getter
 @Setter
 @ToString
-public class UserModel implements Serializable {
+public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -62,20 +61,20 @@ public class UserModel implements Serializable {
     @ToString.Exclude
     @OneToMany(mappedBy = "user", fetch = LAZY)
     @Fetch(SUBSELECT)
-    private Set<PaymentModel> payments;
+    private Set<PaymentEntity> payments;
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final UserModel userModel = (UserModel) o;
-        return id.equals(userModel.id) && email.equals(userModel.email) &&
-                fullName.equals(userModel.fullName) && userStatus.equals(userModel.userStatus) &&
-                userType.equals(userModel.userType) && Objects.equals(cpf, userModel.cpf) &&
-                Objects.equals(phoneNumber, userModel.phoneNumber) && paymentStatus.equals(userModel.paymentStatus) &&
-                Objects.equals(paymentExpirationDate, userModel.paymentExpirationDate) &&
-                Objects.equals(firstPaymentDate, userModel.firstPaymentDate) &&
-                Objects.equals(lastPaymentDate, userModel.lastPaymentDate);
+        final UserEntity userEntity = (UserEntity) o;
+        return id.equals(userEntity.id) && email.equals(userEntity.email) &&
+                fullName.equals(userEntity.fullName) && userStatus.equals(userEntity.userStatus) &&
+                userType.equals(userEntity.userType) && Objects.equals(cpf, userEntity.cpf) &&
+                Objects.equals(phoneNumber, userEntity.phoneNumber) && paymentStatus.equals(userEntity.paymentStatus) &&
+                Objects.equals(paymentExpirationDate, userEntity.paymentExpirationDate) &&
+                Objects.equals(firstPaymentDate, userEntity.firstPaymentDate) &&
+                Objects.equals(lastPaymentDate, userEntity.lastPaymentDate);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.config.security;
+package com.ead.payment.adapter.config.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,10 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.ead.payment.zzzz.enumeration.RoleType.ROLE_ADMIN;
-import static com.ead.payment.zzzz.enumeration.RoleType.ROLE_INSTRUCTOR;
-import static com.ead.payment.zzzz.enumeration.RoleType.ROLE_STUDENT;
-import static com.ead.payment.zzzz.enumeration.RoleType.ROLE_USER;
+import static jakarta.servlet.DispatcherType.ERROR;
+import static com.ead.payment.core.domain.RoleType.ROLE_ADMIN;
+import static com.ead.payment.core.domain.RoleType.ROLE_INSTRUCTOR;
+import static com.ead.payment.core.domain.RoleType.ROLE_STUDENT;
+import static com.ead.payment.core.domain.RoleType.ROLE_USER;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @AllArgsConstructor
@@ -44,7 +45,9 @@ public class WebSecurityConfig {
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint)
                         .accessDeniedHandler(accessDeniedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
-                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .authorizeHttpRequests(auth -> auth
+                    .dispatcherTypeMatchers(ERROR).permitAll()
+                    .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable);
         http.addFilterBefore(authenticationJwtFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();

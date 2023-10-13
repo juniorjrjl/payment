@@ -1,4 +1,4 @@
-package com.ead.payment.zzzz.enumeration;
+package com.ead.payment.core.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
